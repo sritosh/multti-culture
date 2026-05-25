@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tickets — Multti Culture</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+  <div class="container">
+    <!-- Decorative Stickers -->
+    <img src="explore.png" class="sticker" style="top: 150px; left: -30px; transform: rotate(-12deg);">
+    <img src="multiposter.png" class="sticker" style="bottom: 250px; right: -20px; transform: rotate(18deg);">
+    
+    <header>
+      <a href="index.html" class="logo"><img src="atti.jpg" alt="Atti Culture Logo" class="header-logo-img"></a>
+    </header>
+
+    <section>
+      <h1 style="font-size: 4rem; margin-bottom: 3rem;">Select Your Sessions</h1>
+      
+      <div class="grid">
+        <div class="card ticket-option" onclick="toggleSelection(this, 'Studio Sessions', 599)">
+          <div class="time">12–4 PM</div>
+          <h3>Studio Sessions</h3>
+          <div class="price">₹599</div>
+          <p style="margin-bottom: 0;">3-hour mixing & production masterclass.</p>
+        </div>
+
+        <div class="card ticket-option" onclick="toggleSelection(this, 'Fryday Night Live', 399)">
+          <div class="time">4–7 PM</div>
+          <h3>Fryday Night Live</h3>
+          <div class="price">₹399</div>
+          <p style="margin-bottom: 0;">Live podcast taping with audience.</p>
+        </div>
+
+        <div class="card ticket-option" onclick="toggleSelection(this, 'Prime Time', 499)">
+          <div class="time">7–10 PM</div>
+          <h3>Prime Time</h3>
+          <div class="price">₹499</div>
+          <p style="margin-bottom: 0;">Headline live music showcase.</p>
+        </div>
+      </div>
+
+      <div class="content-block with-poster" style="margin: 4rem 0;">
+        <div class="content-text" style="max-width: 600px; width: 100%;">
+          <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Checkout Summary</h2>
+          <div id="summary" style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-color); color: var(--text-muted);">
+            No sessions selected yet.
+          </div>
+          
+          <form id="payment-form" onsubmit="processMockPayment(event)">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" required placeholder="Jane Doe">
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" required placeholder="jane@example.com">
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" required placeholder="+91 98765 43210">
+            </div>
+            
+            <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Proceed to Mock Pay</button>
+          </form>
+        </div>
+
+        <div class="content-image" style="flex: 1; display: flex; justify-content: center; align-items: center; padding: 2rem;">
+          <img src="explore.png" alt="Explore Culture" style="width: 100%; max-width: 450px; border-radius: 6px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); filter: contrast(1.1); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);" onmouseover="this.style.transform='scale(1.05) rotate(2deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    let total = 0;
+    let selectedSessions = [];
+
+    function toggleSelection(element, name, price) {
+      const index = selectedSessions.findIndex(s => s.name === name);
+      
+      if(index > -1) {
+        selectedSessions.splice(index, 1);
+        total -= price;
+        element.classList.remove('selected');
+      } else {
+        selectedSessions.push({name, price});
+        total += price;
+        element.classList.add('selected');
+      }
+      
+      updateSummary();
+    }
+
+    function updateSummary() {
+      const summaryEl = document.getElementById('summary');
+      if(selectedSessions.length === 0) {
+        summaryEl.innerHTML = 'No sessions selected yet.';
+        return;
+      }
+      
+      let html = '<ul style="list-style: none; padding: 0;">';
+      selectedSessions.forEach(s => {
+        html += `<li style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 1.1rem; color: var(--text-main);"><span>${s.name}</span> <span>₹${s.price}</span></li>`;
+      });
+      html += `</ul><div style="margin-top: 1.5rem; font-family: var(--font-header); font-size: 2rem; display: flex; justify-content: space-between; color: var(--text-main);"><span>Total</span> <span>₹${total}</span></div>`;
+      
+      summaryEl.innerHTML = html;
+    }
+
+    function processMockPayment(e) {
+      e.preventDefault();
+      if(selectedSessions.length === 0) {
+        alert("Please select at least one session to proceed.");
+        return;
+      }
+      alert("Mock Payment Successful! This confirms the functionality without actual Razorpay integration. Thank you for your 'purchase'!");
+    }
+  </script>
+</body>
+</html>
