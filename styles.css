@@ -426,6 +426,35 @@ footer h2 {
   animation-play-state: paused;
 }
 
+/* Teaser Video Wrapper */
+.video-wrapper {
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  box-shadow: 0 0 50px rgba(230, 62, 0, 0.3), 0 20px 40px rgba(0, 143, 163, 0.3), 10px 10px 0 var(--accent-secondary);
+  overflow: hidden;
+  transform: rotate(-1.5deg) scale(0.98);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.video-wrapper:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 0 0 70px rgba(230, 62, 0, 0.5), 0 30px 50px rgba(0, 143, 163, 0.5), 15px 15px 0 var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+.teaser-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: contrast(1.05) saturate(1.1);
+  background: #000;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   body, .container {
