@@ -376,6 +376,22 @@ footer h2 {
 }
 
 /* Decorative Stickers */
+@keyframes float-1 {
+  0% { margin-top: 0px; margin-left: 0px; }
+  50% { margin-top: -50px; margin-left: 40px; }
+  100% { margin-top: 30px; margin-left: -20px; }
+}
+@keyframes float-2 {
+  0% { margin-top: 0px; margin-left: 0px; }
+  50% { margin-top: 40px; margin-left: -50px; }
+  100% { margin-top: -30px; margin-left: 30px; }
+}
+@keyframes float-3 {
+  0% { margin-top: 0px; margin-left: 0px; }
+  50% { margin-top: 60px; margin-left: 60px; }
+  100% { margin-top: -40px; margin-left: -20px; }
+}
+
 .sticker {
   position: absolute;
   width: 120px;
@@ -388,6 +404,17 @@ footer h2 {
   opacity: 0.3;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   pointer-events: auto;
+  animation: float-1 20s infinite ease-in-out alternate;
+}
+
+.sticker:nth-child(even) {
+  animation-name: float-2;
+  animation-duration: 25s;
+}
+
+.sticker:nth-child(3n) {
+  animation-name: float-3;
+  animation-duration: 18s;
 }
 
 .sticker:hover {
@@ -396,6 +423,7 @@ footer h2 {
   box-shadow: 10px 10px 0 var(--accent-primary);
   z-index: 50;
   border-color: var(--accent-primary);
+  animation-play-state: paused;
 }
 
 /* Mobile Responsiveness */
