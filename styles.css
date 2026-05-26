@@ -462,6 +462,23 @@ footer h2 {
   background: #000;
 }
 
+/* Sticky Spinning Logo */
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.sticky-logo {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 120px;
+  height: 120px;
+  z-index: 999;
+  pointer-events: none;
+  animation: spin 12s linear infinite;
+  filter: drop-shadow(4px 4px 0 var(--accent-primary)) drop-shadow(-2px -2px 0 var(--accent-secondary));
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   body, .container {
@@ -527,5 +544,12 @@ footer h2 {
   }
   div[style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
+  }
+  
+  .sticky-logo {
+    width: 70px;
+    height: 70px;
+    bottom: 1rem;
+    right: 1rem;
   }
 }
