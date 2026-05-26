@@ -51,19 +51,12 @@ a:hover {
   color: var(--text-muted);
 }
 
-@keyframes text-glitch {
-  0%, 100% { text-shadow: none; }
-  33% { text-shadow: 2px 2px 0px rgba(230, 62, 0, 0.3); }
-  66% { text-shadow: -2px -2px 0px rgba(0, 143, 163, 0.3); }
-}
-
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-header);
   font-weight: 700;
   letter-spacing: -0.5px;
   text-transform: none;
   margin-bottom: 0.5rem;
-  animation: text-glitch 4s infinite ease-in-out;
 }
 
 /* Layout Utilities */
@@ -462,21 +455,17 @@ footer h2 {
   background: #000;
 }
 
-/* Sticky Spinning Logo */
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
-
+/* Sticky Floating Logo */
 .sticky-logo {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   z-index: 999;
   pointer-events: none;
-  animation: spin 12s linear infinite;
-  filter: drop-shadow(4px 4px 0 var(--accent-primary)) drop-shadow(-2px -2px 0 var(--accent-secondary));
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(2px 2px 0 var(--accent-primary));
 }
 
 /* Mobile Responsiveness */
@@ -547,8 +536,8 @@ footer h2 {
   }
   
   .sticky-logo {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     bottom: 1rem;
     right: 1rem;
   }
