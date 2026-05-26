@@ -429,7 +429,7 @@ footer h2 {
 /* Teaser Video Wrapper */
 .video-wrapper {
   max-width: 900px;
-  width: 90%;
+  width: fit-content;
   margin: 0 auto;
   border-radius: 8px;
   border: 2px solid var(--border-color);
@@ -448,7 +448,9 @@ footer h2 {
 }
 
 .teaser-video {
-  width: 100%;
+  max-width: 100%;
+  max-height: 60vh;
+  width: auto;
   height: auto;
   display: block;
   filter: contrast(1.05) saturate(1.1);
